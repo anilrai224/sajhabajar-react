@@ -1,0 +1,31 @@
+.services{
+    width: 100%;
+    .servicesContents{
+        border-radius: 20px;
+        background-color: var(--green);
+        // display: flex;
+        // justify-content: space-between;
+        display: grid;
+        grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+        padding: 40px 30px;
+        .serviceCard{
+            display: flex;
+            align-items: center;
+            color: white;
+            gap: 20px;
+            .imgContainer{
+                font-size: 50px;
+            }
+            .desc{
+                display: flex;
+                flex-direction: column;
+                p{
+                    font-weight: 600;
+                }
+                span{
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}

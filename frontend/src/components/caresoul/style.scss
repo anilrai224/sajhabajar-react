@@ -1,0 +1,37 @@
+.caresoul{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    .title{
+        border-radius: 15px;
+        color: white;
+        width: max-content;
+        padding: 8px 20px;
+        font-weight: 600;
+        background-color: var(--orange);
+    }
+    .heading{
+        display: flex;
+        justify-content: space-between;
+        gap: 30px;
+        align-items: center;
+        h1{
+            // width: 220px;
+            // background-color: red;
+            // max-width: max-content;
+        }
+        .line{
+            height: 1.5px;
+            background-color: var(--green);
+            // width: calc(100% - 220px);
+        }
+    }
+    .products{
+        .slider{
+            .slick-slide > div{
+                margin: 15px;
+            }
+        }
+    }
+}

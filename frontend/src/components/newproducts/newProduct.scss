@@ -1,0 +1,34 @@
+.newProducts{
+    padding-top: 110px;
+    padding-bottom: 50px;
+    background-color: var(--gray);
+    .newProductsContents{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .title{
+            width: max-content;
+            padding: 8px 15px;
+            background-color: var(--orange);
+            color: white;
+            font-weight: 600;
+            font-size: 14px;
+            border-radius: 10px;
+        }
+        h1{
+            &::after{
+                content:'';
+                height: 3px;
+                background-color: var(--green);
+                width: 100%;
+            }
+        }
+        .products{
+            display: grid;
+            grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
+            gap: 20px;
+            height: 100%;
+        }
+    }
+}

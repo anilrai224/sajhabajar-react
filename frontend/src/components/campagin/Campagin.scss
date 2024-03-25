@@ -1,0 +1,52 @@
+.campaign{
+    width: 100%;
+    margin: 30px 0;
+    .campaignContent{
+        display: flex;
+        border-radius: 10px;
+        background: url('../../assets/wall.png');
+        z-index: -1;
+        .textContainer{
+            flex: 2;
+            width: 100%;
+            padding-left: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 20px;
+            h2{
+                font-weight: 700;
+                font-size: 27px;
+                display: flex;
+                gap: 8px;
+                p{
+                    color: var(--orange);
+                }
+            }
+            span{
+                background-color: var(--orange);
+                color: white;
+                width: max-content;
+                padding: 8px 13px;
+                border-radius: 10px;
+            }
+            h6{
+                font-weight: 500;
+                font-size: 15px;
+            }
+        }
+        .imgContainer{
+            flex: 1;
+            display: grid;
+            place-items: center;
+            width: 100%;
+            height: 100%;
+            img{
+                height: 80%;
+                width: 80%;
+                object-fit: contain;
+                background-color: transparent;
+            }
+        }
+    }
+}
