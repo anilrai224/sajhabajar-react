@@ -59,7 +59,7 @@ const CategoryLinks = () => {
             <div className="linkList" key={Math.random()}>
                 <div className="links">
                     <img src={link.img}/>
-                    <NavLink href={`/category${link.path}`} key={link.path}>{link.title}</NavLink>
+                    <NavLink to={`/category${link.path}`} key={link.path}>{link.title}</NavLink>
                 </div>
                 <IoIosArrowForward style={{ color:'var(--green)' }} />
             </div>

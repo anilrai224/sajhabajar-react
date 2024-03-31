@@ -9,6 +9,7 @@ import { FaXTwitter } from "react-icons/fa6";
 import { useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
+import { NavLink } from 'react-router-dom';
 
 const Navbar = () => {
     const [toggle,setToggle] = useState(false);
@@ -42,12 +43,12 @@ const Navbar = () => {
                         </label>
                     </div>
                     <div className="login">
-                        <div className="loginDetails">
+                        <NavLink to='/login' className="loginDetails">
                             <p>Login</p>
                             <div className="icon">
                                 <MdOutlinePerson/>
                             </div>
-                        </div>
+                        </NavLink>
                         <div className="navCart">
                             <div className="icon">
                                 <IoBagOutline />
