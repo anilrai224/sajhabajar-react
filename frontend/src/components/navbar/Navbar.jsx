@@ -10,6 +10,7 @@ import { useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 import { NavLink } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const Navbar = () => {
     const [toggle,setToggle] = useState(false);
@@ -22,6 +23,9 @@ const Navbar = () => {
             setShow(prev=>!prev)
         }, 1300);
     }
+
+    const loginStatus = useSelector(state=>state.loginStatus)
+
     return (
         <div className="navbar">
             <div className={`responsiveNav ${toggle && 'active'}`}>
@@ -43,12 +47,17 @@ const Navbar = () => {
                         </label>
                     </div>
                     <div className="login">
-                        <NavLink to='/login' className="loginDetails">
+                        {!loginStatus ? <NavLink to='/login' className="loginDetails">
                             <p>Login</p>
                             <div className="icon">
                                 <MdOutlinePerson/>
                             </div>
                         </NavLink>
+                        :
+                        <div className="profile">
+                            <span>Profile</span>
+                        </div>
+                        }
                         <div className="navCart">
                             <div className="icon">
                                 <IoBagOutline />

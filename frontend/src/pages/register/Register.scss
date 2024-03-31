@@ -1,0 +1,54 @@
+$green: #028159;
+$orange: #FB7746;
+$gray: #EAEAEA;
+
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 100px 20px;
+  background-color: $gray;
+
+  .register-form {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 300px;
+
+    h2 {
+      text-align: center;
+      color: $green;
+      margin-bottom: 20px;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="file"] {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid $gray;
+      border-radius: 4px;
+    }
+
+    button {
+      width: 100%;
+      padding: 10px;
+      background-color: $green;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .login-link {
+      margin-top: 10px;
+      text-align: center;
+      a {
+        color: $orange;
+        text-decoration: none;
+      }
+    }
+  }
+}

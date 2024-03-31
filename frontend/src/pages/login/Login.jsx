@@ -2,11 +2,15 @@ import React, { useState } from 'react';
 import './Login.scss';
 import companyLogo from '../../assets/logo.png'; 
 import axios from 'axios'
+import {useDispatch} from 'react-redux'
+import { setLoginStatus } from '../../redux/LoginStatusSlice'
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
+
+  const dispatch = useDispatch();
 
   const validateForm = () => {
     let errors = {};
@@ -31,6 +35,9 @@ const Login = () => {
     if (validateForm()) {
       const response = await axios.post('/api/user/login',{email,password})
       console.log(response.data)
+      if(response.data.success){
+        dispatch(setLoginStatus(true))
+      }
     }
   };
 
@@ -44,14 +51,14 @@ const Login = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        {errors.email && <div className="error">{errors.email}</div>}
+        {errors.email && <div style={{ color:'red' }} className="error">{errors.email}</div>}
         <input
           type="password"
           placeholder="Password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        {errors.password && <div className="error">{errors.password}</div>}
+        {errors.password && <div style={{ color:'red' }} className="error">{errors.password}</div>}
         <button type="submit">Login</button>
         <div className="register-link">
           Don't have an account? <a href="/register">Register</a>
