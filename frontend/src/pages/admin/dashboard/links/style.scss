@@ -1,0 +1,23 @@
+.dashboardLinks {
+    background-color: var(--orange);
+    width: max-content;
+    .imgContainer{
+        padding-top: 20px;
+        margin: auto;
+        max-width: 100px;
+        img{
+
+            width: 100%;
+        }
+    }
+    .links {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        height: 60vh;
+        padding: 20px;
+        a {
+            font-weight: 600;
+        }
+    }
+}

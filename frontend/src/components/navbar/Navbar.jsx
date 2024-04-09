@@ -6,30 +6,30 @@ import { MdOutlinePerson } from "react-icons/md";
 import { IoBagOutline } from "react-icons/io5";
 import { FaFacebookF, FaInstagram } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
-import { useState } from 'react';
+import {  useState } from 'react';
 import { FaBars } from "react-icons/fa";
 import { CgClose } from "react-icons/cg";
 import { NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 const Navbar = () => {
-    const [toggle,setToggle] = useState(false);
-    const [show,setShow] = useState(false);
-    const handleClick=(e)=>{
+    const loginStatus = useSelector(state => state.loginStatus)
+
+    const [toggle, setToggle] = useState(false);
+    const [show, setShow] = useState(false);
+    const handleClick = (e) => {
         e.preventDefault();
-        setToggle(prev=>!prev);
+        setToggle(prev => !prev);
 
         setTimeout(() => {
-            setShow(prev=>!prev)
+            setShow(prev => !prev)
         }, 1300);
     }
-
-    const loginStatus = useSelector(state=>state.loginStatus)
 
     return (
         <div className="navbar">
             <div className={`responsiveNav ${toggle && 'active'}`}>
-                <Links type='responsive'/>
+                <Links type='responsive' />
             </div>
             <div className='container'>
                 <div className="navbarContents">
@@ -50,13 +50,13 @@ const Navbar = () => {
                         {!loginStatus ? <NavLink to='/login' className="loginDetails">
                             <p>Login</p>
                             <div className="icon">
-                                <MdOutlinePerson/>
+                                <MdOutlinePerson />
                             </div>
                         </NavLink>
-                        :
-                        <div className="profile">
-                            <span>Profile</span>
-                        </div>
+                            :
+                            <NavLink to='/profile' className="profile">
+                                <span>Profile</span>
+                            </NavLink>
                         }
                         <div className="navCart">
                             <div className="icon">
@@ -70,7 +70,7 @@ const Navbar = () => {
                     </div>
                     <div className="navLinksContainer">
                         <button>shop by category</button>
-                        <Links type='normal'/>
+                        <Links type='normal' />
                         <div className="toggle" onClick={handleClick}>
                             {!show ? <FaBars /> : <CgClose />}
                         </div>

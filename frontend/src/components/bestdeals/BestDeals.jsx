@@ -24,7 +24,7 @@ const BestDeals = () => {
           </div>
           <div className="right">
             {bestdeals.map((product)=>(
-              <SingleProduct data={product}/>
+              <SingleProduct key={product.name} data={product}/>
             ))}
           </div>
         </div>

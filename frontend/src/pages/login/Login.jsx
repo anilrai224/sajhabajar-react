@@ -37,6 +37,7 @@ const Login = () => {
       console.log(response.data)
       if(response.data.success){
         dispatch(setLoginStatus(true))
+        localStorage.setItem('token',response.data.token)
       }
     }
   };
