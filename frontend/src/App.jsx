@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import Navbar from './components/navbar/Navbar'
 import Footer from './components/footer/Footer'
@@ -16,7 +16,6 @@ import { setLoginStatus } from './redux/LoginStatusSlice'
 import axios from 'axios';
 
 const App = () => {
-
   const loginStatus = useSelector(state => state.loginStatus)
   const dispatch = useDispatch();
 
@@ -29,18 +28,29 @@ const App = () => {
             Authorization: `Bearer ${token}`
           }
         })
-        dispatch(setUserDetail(response.data.user))
-        dispatch(setLoginStatus(true))
-        if (response.data.user.role === 'admin') {
-          dispatch(setIsAdmin(true))
+        if (response.data.message == 'Authentication Failed') {
+          console.log('Authentication Failed')
         } else {
-          dispatch(setIsAdmin(false))
+          dispatch(setUserDetail(response.data.user))
+          dispatch(setLoginStatus(true))
+          if (response.data.user.role === 'admin') {
+            dispatch(setIsAdmin(true))
+          } else {
+            dispatch(setIsAdmin(false))
+          }
         }
       }
     }
     fetchUser()
   }, [loginStatus])
   const isAdmin = useSelector(state => state.userDetail.isAdmin)
+
+  useEffect(() => {
+    const currentURL = window.location.href;
+    if (currentURL.includes('login') && isAdmin) {
+      window.location.pathname ='/admin'
+    }
+  }, [isAdmin])
 
   return (
     <div>
@@ -68,8 +78,9 @@ const App = () => {
 
               <Route path='/profile' element={<Profile />} />
 
-              <Route path='/admin/*' element={<Dashboard />}>
-              </Route>
+              <Route path='/admin/*' element={<PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>} />
             </>
           )}
         </Routes>

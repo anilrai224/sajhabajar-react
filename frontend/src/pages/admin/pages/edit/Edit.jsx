@@ -1,17 +1,22 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import {useParams} from 'react-router-dom'
 import './style.scss'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function CreateProduct() {
+const CreateProduct=()=> {
+    const [tempProduct,setTempProduct] = useState(null);
+
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [price, setPrice] = useState('');
   const [category, setCategory] = useState('');
   const [quantity, setQuantity] = useState('');
-  const [image, setImage] = useState(null);
 
+  const {id} = useParams();
+
+  const token = localStorage.getItem('token')
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -21,42 +26,19 @@ function CreateProduct() {
     formData.append('price', price);
     formData.append('category', category);
     formData.append('quantity', quantity);
-    formData.append('image', image);
+    formData.append('image',)//todo
 
     try {
-      const response = await axios.post('/api/product/create', formData, {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      });
-      console.log(response.data.success)
-      if(response.data.success){
-        toast.success(`${response.data.message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-      }else{
-        toast.error(`${response.data.message}`, {
-          position: "top-right",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          theme: "light",
-          });
-      }
+        const response = await axios.post(`/api/product/getAProduct/${id}`,formData,{
+          headers:{
+            "Authorization":`Bearer ${token}`
+          }
+        });
+        console.log(response)
     } catch (error) {
-      console.log('Error creating product:', error);
+        console.log('Error fetching a Product',error);
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit} className="create-product-form">
@@ -65,11 +47,7 @@ function CreateProduct() {
       <input required type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
       <input required type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" />
       <input required type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
-      <input required type="file" onChange={(e) => setImage(e.target.files[0])} />
-      {image && <div className='imgContainer'>
-        <img src={URL.createObjectURL(image)} alt="Selected" />
-      </div>}
-      <button type="submit">Create Product</button>
+      <button type="submit">Update Product</button>
       <ToastContainer style={{ zIndex:'100000000' }}/>
     </form>
   );

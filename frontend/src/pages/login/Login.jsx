@@ -4,6 +4,9 @@ import companyLogo from '../../assets/logo.png';
 import axios from 'axios'
 import {useDispatch} from 'react-redux'
 import { setLoginStatus } from '../../redux/LoginStatusSlice'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -34,10 +37,21 @@ const Login = () => {
     e.preventDefault();
     if (validateForm()) {
       const response = await axios.post('/api/user/login',{email,password})
-      console.log(response.data)
       if(response.data.success){
         dispatch(setLoginStatus(true))
         localStorage.setItem('token',response.data.token)
+      }else{
+        toast.error(`${response.data.message}`, {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "light",
+          // transition: Bounce,
+          });
       }
     }
   };
@@ -65,6 +79,7 @@ const Login = () => {
           Don't have an account? <a href="/register">Register</a>
         </div>
       </form>
+      <ToastContainer style={{ zIndex:'100000000' }}/>
     </div>
   );
 };
