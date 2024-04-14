@@ -5,13 +5,13 @@ const bestdeals=[
     {
         name:'Village Organic Orange',
         price:100,
-        img:Img1,
+        image:Img1,
         category:'Fruits',
     },
     {
         name:'Kurauni',
         price:500,
-        img:Img4,
+        image:Img4,
         category:'Home Made',
     },
 ]

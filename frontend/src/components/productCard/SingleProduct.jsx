@@ -6,7 +6,7 @@ const SingleProduct =({data})=>{
   return (
     <div className="card">
       <div className="imgContainer">
-        <img src={data?.img} alt='Product Image'/>
+        <img src={data?.image} alt='Product Image'/>
       </div>
       <div className="textContainer">
         <div className="name">

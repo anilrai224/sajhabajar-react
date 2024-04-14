@@ -29,8 +29,7 @@ function CreateProduct() {
           'Content-Type': 'multipart/form-data'
         }
       });
-      console.log(response.data.success)
-      if(response.data.success){
+      if (response.data.success) {
         toast.success(`${response.data.message}`, {
           position: "top-right",
           autoClose: 5000,
@@ -40,8 +39,8 @@ function CreateProduct() {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
-      }else{
+        });
+      } else {
         toast.error(`${response.data.message}`, {
           position: "top-right",
           autoClose: 5000,
@@ -51,7 +50,7 @@ function CreateProduct() {
           draggable: true,
           progress: undefined,
           theme: "light",
-          });
+        });
       }
     } catch (error) {
       console.log('Error creating product:', error);
@@ -63,14 +62,20 @@ function CreateProduct() {
       <input required type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Product Name" />
       <input required type="text" value={desc} onChange={(e) => setDesc(e.target.value)} placeholder="Description" />
       <input required type="number" value={price} onChange={(e) => setPrice(e.target.value)} placeholder="Price" />
-      <input required type="text" value={category} onChange={(e) => setCategory(e.target.value)} placeholder="Category" />
+      <select className='selectOption' required value={category} onChange={(e) => setCategory(e.target.value)}>
+        <option value="">Select a category</option>
+        <option value="Vegetables">Vegetables</option>
+        <option value="Meat">Meat</option>
+        <option value="Pickel">Pickel</option>
+        <option value="HomeMade">Home Made</option>
+      </select>
       <input required type="number" value={quantity} onChange={(e) => setQuantity(e.target.value)} placeholder="Quantity" />
       <input required type="file" onChange={(e) => setImage(e.target.files[0])} />
       {image && <div className='imgContainer'>
         <img src={URL.createObjectURL(image)} alt="Selected" />
       </div>}
       <button type="submit">Create Product</button>
-      <ToastContainer style={{ zIndex:'100000000' }}/>
+      <ToastContainer style={{ zIndex: '100000000' }} />
     </form>
   );
 }

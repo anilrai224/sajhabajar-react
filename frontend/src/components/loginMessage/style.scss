@@ -1,0 +1,14 @@
+.loginMessage{
+    height: 50vh;
+    display: grid;
+    place-items: center;
+    a{
+        width: max-content;
+        color: white;
+        padding: 15px 25px;
+        border-radius: 16px;
+        font-size: 18px;
+        font-weight: bold;
+        background-color: var(--orange);
+    }
+}

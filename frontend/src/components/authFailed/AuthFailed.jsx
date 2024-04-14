@@ -8,8 +8,8 @@ const AuthFailed = () => {
       <div className="container">
         <div className="authfailedContents">
           <h1>You donot have permission</h1>
-          <p>Please Login To Acces</p>
-          <NavLink to ='/login'>Login</NavLink>
+          <p>Please Login as Admin To Acces</p>
+          {/* <NavLink to ='/login'>Login</NavLink> */}
         </div>
       </div>
     </div>

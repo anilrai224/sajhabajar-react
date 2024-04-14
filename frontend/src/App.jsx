@@ -14,6 +14,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setIsAdmin, setUserDetail } from './redux/userDetailSlice';
 import { setLoginStatus } from './redux/LoginStatusSlice'
 import axios from 'axios';
+import AllProducts from './pages/allProducts/AllProducts'
 
 const App = () => {
   const loginStatus = useSelector(state => state.loginStatus)
@@ -73,10 +74,11 @@ const App = () => {
               <Route path="/register" element={<PrivateRoute>
                 <Register />
               </PrivateRoute>} />
+              <Route path='/allProducts' element={<AllProducts/>}/>
 
               <Route path='/category/:name' element={<Category />} />
 
-              <Route path='/profile' element={<Profile />} />
+              <Route path='/profile' element={<PrivateRoute><Profile /></PrivateRoute>} />
 
               <Route path='/admin/*' element={<PrivateRoute>
                 <Dashboard />

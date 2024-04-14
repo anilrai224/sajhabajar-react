@@ -22,6 +22,10 @@ const Links = ({type}) => {
             title:'Contact',
             path:'/contact',
         },
+        {
+            title:'All Products',
+            path:'/allProducts'
+        }
     ]
   return (
     <div className={`navLinks ${type==='responsive' && 'responsive'}`}>
